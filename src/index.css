@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lato:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+/* ============================================
+   Bitscale Dashboard — Design System
+   Tailwind CSS v4 Theme Configuration
+   ============================================ */
+
+@theme {
+  /* Primary Colors */
+  --color-green-primary: #438361;
+  --color-green-bg: #EDF3EC;
+  --color-blue-primary: #1A56DB;
+  --color-blue-accent: #347FA9;
+  --color-blue-secondary: #8DBAD0;
+  --color-purple-accent: #8F65AF;
+  --color-orange-avatar: #F39C3E;
+  --color-yellow-star: #FDB022;
+
+  /* Neutral Colors */
+  --color-text-primary: #1A202C;
+  --color-text-heading: #1F2A37;
+  --color-text-card: #383530;
+  --color-text-secondary: #6B7280;
+  --color-text-tertiary: #9CA3AF;
+  --color-text-muted: #374151;
+
+  /* Background Colors */
+  --color-bg-white: #FFFFFF;
+  --color-bg-alt-row: #F9FAFB;
+  --color-bg-input: #F3F4F6;
+  --color-bg-dark-button: #1F2A37;
+  --color-bg-dark-overlay: #4B5563;
+  --color-bg-card-blue: rgba(231, 243, 248, 0.5);
+
+  /* Border Colors */
+  --color-border-primary: #E5E7EB;
+  --color-border-light: #F3F4F6;
+  --color-border-card: #D1D5DC;
+  --color-border-icon: #F1F1EF;
+
+  /* Sidebar Colors */
+  --color-sidebar-bg: #FFFFFF;
+  --color-sidebar-text: #6B7280;
+  --color-sidebar-text-active: #1F2A37;
+  --color-sidebar-hover: rgba(0, 0, 0, 0.04);
+  --color-sidebar-active-bg: #EDF3EC;
+  --color-sidebar-active-border: #438361;
+  --color-sidebar-divider: rgba(0, 0, 0, 0.08);
+
+  /* Font Family */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-lato: 'Lato', sans-serif;
+
+  /* Animations */
+  --animate-shimmer: shimmer 1.5s infinite;
+  --animate-float: float 3s ease-in-out infinite;
+}
+
+/* ============================================
+   Dark Mode CSS Variables
+   ============================================ */
+[data-theme="dark"] {
+  --color-text-primary: #F9FAFB;
+  --color-text-heading: #F3F4F6;
+  --color-text-card: #E5E7EB;
+  --color-text-secondary: #9CA3AF;
+  --color-text-tertiary: #6B7280;
+  --color-text-muted: #D1D5DC;
+
+  --color-bg-white: #111118;
+  --color-bg-alt-row: #16161F;
+  --color-bg-input: #1E1E2A;
+  --color-bg-dark-button: #E5E7EB;
+  --color-bg-card-blue: rgba(52, 127, 169, 0.08);
+
+  --color-border-primary: #2D2D3A;
+  --color-border-light: #1E1E2A;
+  --color-border-card: #2D2D3A;
+  --color-border-icon: #2D2D3A;
+
+  --color-sidebar-bg: #111118;
+  --color-sidebar-text: #9CA3AF;
+  --color-sidebar-text-active: #FFFFFF;
+  --color-sidebar-hover: rgba(255, 255, 255, 0.06);
+  --color-sidebar-active-bg: rgba(67, 131, 97, 0.12);
+  --color-sidebar-divider: rgba(255, 255, 255, 0.08);
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-bg-white);
+    color: var(--color-text-primary);
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  /* Focus ring style */
+  *:focus-visible {
+    outline: 2px solid var(--color-blue-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Skip to main content link */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-blue-primary);
+    color: white;
+    padding: 8px 16px;
+    z-index: 100;
+    transition: top 0.2s;
+    border-radius: 0 0 4px 0;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ============================================
+   Custom Animations
+   ============================================ */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* ============================================
+   Scrollbar Styling
+   ============================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-primary);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-tertiary);
+}
+
+
