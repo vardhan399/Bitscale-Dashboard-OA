@@ -8,8 +8,8 @@ interface GridTableHeaderProps {
 
 const columns = [
   { key: 'name', label: 'Name', flex: true, sortable: true },
-  { key: 'editedBy', label: 'Edited by', width: 177, sortable: false },
-  { key: 'lastEdited', label: 'Last edited', width: 109, sortable: false },
+  { key: 'editedBy', label: 'Edited by', width: 177, sortable: false, hideBelow380: true },
+ { key: 'lastEdited', label: 'Last edited', width: 140, sortable: false, hideMobile: true },
   { key: 'actions', label: 'Actions', width: 60, sortable: false, align: 'right' as const },
 ];
 
@@ -24,12 +24,15 @@ export function GridTableHeader({ sortState, onSort }: GridTableHeaderProps) {
       role="row"
     >
       {/* Expand + Star + Icons spacer */}
-      <div className="w-[127px] flex-shrink-0 px-4" />
+      <div className="w-[80px] sm:w-[127px] flex-shrink-0 px-2 sm:px-4" />
 
       {columns.map((col) => (
         <div
           key={col.key}
-          className={`flex items-center gap-2 px-4 h-full ${col.align === 'right' ? 'justify-end' : ''}`}
+          className={`flex items-center gap-2 px-2 sm:px-4 h-full
+            ${col.align === 'right' ? 'justify-end' : ''}
+            ${col.hideBelow380 ? 'hidden min-[380px]:flex' : ''}
+            ${col.hideMobile ? 'hidden sm:flex' : ''}`}
           style={{
             width: col.width ? `${col.width}px` : undefined,
             flex: col.flex ? '1' : undefined,
@@ -38,9 +41,7 @@ export function GridTableHeader({ sortState, onSort }: GridTableHeaderProps) {
           role="columnheader"
           aria-sort={
             col.sortable && sortState.column === col.key
-              ? sortState.direction === 'asc'
-                ? 'ascending'
-                : 'descending'
+              ? sortState.direction === 'asc' ? 'ascending' : 'descending'
               : undefined
           }
         >
@@ -52,11 +53,7 @@ export function GridTableHeader({ sortState, onSort }: GridTableHeaderProps) {
             >
               {col.label}
               {sortState.column === col.key ? (
-                sortState.direction === 'asc' ? (
-                  <ArrowUp size={12} />
-                ) : (
-                  <ArrowDown size={12} />
-                )
+                sortState.direction === 'asc' ? <ArrowUp size={12} /> : <ArrowDown size={12} />
               ) : (
                 <ArrowUp size={12} className="opacity-30" />
               )}

@@ -16,9 +16,10 @@ export function DemoProgressCard() {
 
   const completedCount = items.filter((i) => i.isCompleted).length;
   const progressPercentage = items.length > 0 ? Math.round((completedCount / items.length) * 100) : 0;
+
   return (
     <div
-      className="rounded-lg p-4 px-5 flex-1 min-w-0 h-[166px] flex flex-col border"
+      className="rounded-lg p-4 px-5 flex-1 min-w-0 h-auto sm:h-[166px] flex flex-col border"
       style={{
         background: 'linear-gradient(332.99deg, rgba(255,255,255,0.5) 35.17%, rgba(231,243,248,0.5) 83.22%)',
         borderColor: '#E7F3F8',
@@ -56,8 +57,8 @@ export function DemoProgressCard() {
       {/* Onboarding items */}
       <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 mt-3">
         {items.map((item) => (
-          <button 
-            key={item.id} 
+          <button
+            key={item.id}
             onClick={() => toggleItem(item.id)}
             className="flex items-center gap-1.5 text-left cursor-pointer group"
           >

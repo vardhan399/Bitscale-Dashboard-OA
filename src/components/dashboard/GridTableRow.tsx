@@ -57,8 +57,11 @@ export function GridTableRow({ grid, index }: GridTableRowProps) {
       role="row"
     >
       {/* Expand + Star + Type Icons */}
-      <div className="w-[127px] flex-shrink-0 pl-4 flex items-center gap-2.5">
-        <button className="cursor-pointer opacity-40 hover:opacity-100 transition-opacity" aria-label="Expand row">
+      <div className="w-[80px] sm:w-[127px] flex-shrink-0 pl-2 sm:pl-4 flex items-center gap-1.5 sm:gap-2.5">
+        <button
+          className="cursor-pointer opacity-40 hover:opacity-100 transition-opacity"
+          aria-label="Expand row"
+        >
           <ChevronDown size={14} style={{ color: 'var(--color-text-muted)' }} />
         </button>
 
@@ -84,22 +87,25 @@ export function GridTableRow({ grid, index }: GridTableRowProps) {
       </div>
 
       {/* Name */}
-      <div className="flex-1 min-w-0 px-4" role="cell">
+      <div className="flex-1 min-w-0 px-2 sm:px-4" role="cell">
         <span className="text-xs truncate block" style={{ color: 'var(--color-text-primary)' }}>
           {grid.name}
         </span>
       </div>
 
-      {/* Edited by */}
-      <div className="w-[177px] flex-shrink-0 px-4 flex items-center gap-2.5" role="cell">
+      {/* Edited by — hidden below 380px, full width on desktop */}
+      <div
+        className="w-[177px] flex-shrink-0 px-2 sm:px-4 hidden min-[380px]:flex items-center gap-1.5 sm:gap-2.5"
+        role="cell"
+      >
         <Avatar name={grid.editedBy.name} color={grid.editedBy.avatarColor} size="sm" />
-        <span className="text-xs" style={{ color: 'var(--color-text-primary)' }}>
+        <span className="text-xs truncate" style={{ color: 'var(--color-text-primary)' }}>
           {grid.editedBy.name}
         </span>
       </div>
 
-      {/* Last edited */}
-      <div className="w-[109px] flex-shrink-0 px-4" role="cell">
+      {/* Last edited — hidden on mobile */}
+     <div className="w-[140px] flex-shrink-0 px-4 hidden sm:block" role="cell">
         <span className="text-xs" style={{ color: 'var(--color-text-primary)' }}>
           {grid.lastEdited}
         </span>

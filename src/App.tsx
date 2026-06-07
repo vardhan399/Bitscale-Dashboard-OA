@@ -23,7 +23,7 @@ export function App() {
   return (
     <>
       <AppLayout>
-        <div className="flex flex-col gap-6 p-5 max-w-[1440px] w-full mx-auto">
+        <div className="flex flex-col gap-6 px-3 py-4 sm:p-5 max-w-[1440px] w-full mx-auto">
           {isLoading ? (
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-2">
